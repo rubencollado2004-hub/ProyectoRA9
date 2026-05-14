@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nuevo Artista</title>
+</head>
+<body>
+<h1>Crear artista</h1>
+<form th:action="@{/web/artistas/nueva}" th:object="${artista}" method="post">
+    <div>
+        <label>Nombre: <input type="text" th:field="*{nombre}" required/></label>
+    </div>
+    <div>
+        <label>Género: <input type="text" th:field="*{genero}" required/></label>
+    </div>
+    <div>
+        <label>País: <input type="text" th:field="*{pais}" required/></label>
+    </div>
+    <div>
+        <label>Año debut: <input type="number" th:field="*{añoDebut}" required/></label>
+    </div>
+    <div>
+        <button type="submit">Guardar</button>
+        <a th:href="@{/web/artistas}">Cancelar</a>
+    </div>
+</form>
+</body>
+</html>

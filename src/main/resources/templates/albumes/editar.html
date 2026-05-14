@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Editar Álbum</title>
+</head>
+<body>
+<h1>Editar álbum</h1>
+<form th:action="@{/web/albumes/editar/{id}(id=${album.id})}" th:object="${album}" method="post">
+    <div>
+        <label>Título: <input type="text" th:field="*{titulo}" required/></label>
+    </div>
+    <div>
+        <label>Año: <input type="number" th:field="*{año}" required/></label>
+    </div>
+    <div>
+        <label>Número de pistas: <input type="number" th:field="*{numeroPistas}" required/></label>
+    </div>
+    <div>
+        <label>Duración total: <input type="number" th:field="*{duracionTotal}" required/></label>
+    </div>
+    <div>
+        <label>Artista:
+            <select th:field="*{artista.id}" required>
+                <option value="" disabled>Selecciona un artista</option>
+                <option th:each="artista : ${artistas}" th:value="${artista.id}" th:text="${artista.nombre}" th:selected="${album.artista != null and artista.id == album.artista.id}"></option>
+            </select>
+        </label>
+    </div>
+    <div>
+        <button type="submit">Guardar</button>
+        <a th:href="@{/web/albumes}">Cancelar</a>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Detalle de Artista</title>
+</head>
+<body>
+<h1>Detalle de artista</h1>
+<div th:if="${artista} != null">
+    <p><strong>Nombre:</strong> <span th:text="${artista.nombre}"></span></p>
+    <p><strong>Género:</strong> <span th:text="${artista.genero}"></span></p>
+    <p><strong>País:</strong> <span th:text="${artista.pais}"></span></p>
+    <p><strong>Año debut:</strong> <span th:text="${artista.añoDebut}"></span></p>
+    <h2>Álbumes</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Año</th>
+            <th>Pistas</th>
+            <th>Duración</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="album : ${albumes}">
+            <td th:text="${album.titulo}"></td>
+            <td th:text="${album.año}"></td>
+            <td th:text="${album.numeroPistas}"></td>
+            <td th:text="${album.duracionTotal}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p><a th:href="@{/web/artistas}">Volver a la lista de artistas</a></p>
+</body>
+</html>

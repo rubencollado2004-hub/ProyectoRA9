@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Álbumes</title>
+</head>
+<body>
+<h1>Álbumes</h1>
+<p><a th:href="@{/web/albumes/nueva}">Crear nuevo álbum</a></p>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Título</th>
+        <th>Año</th>
+        <th>Artista</th>
+        <th>Pistas</th>
+        <th>Duración</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="album : ${albumes}">
+        <td th:text="${album.titulo}"></td>
+        <td th:text="${album.año}"></td>
+        <td th:text="${album.artista != null ? album.artista.nombre : ''}"></td>
+        <td th:text="${album.numeroPistas}"></td>
+        <td th:text="${album.duracionTotal}"></td>
+        <td>
+            <a th:href="@{/web/albumes/editar/{id}(id=${album.id})}">Editar</a>
+            <form th:action="@{/web/albumes/borrar/{id}(id=${album.id})}" method="post" style="display:inline">
+                <button type="submit">Borrar</button>
+            </form>
+            <a th:href="@{/web/albumes/{id}(id=${album.id})}">Ver detalle</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><a th:href="@{/web/artistas}">Volver a artistas</a></p>
+</body>
+</html>

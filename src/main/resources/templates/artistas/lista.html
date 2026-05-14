@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Artistas</title>
+</head>
+<body>
+<h1>Artistas</h1>
+<form action="#" method="get">
+    <label>Filtrar por género: <input type="text" name="genero" th:value="${genero}"/></label>
+    <button type="submit">Filtrar</button>
+    <a th:href="@{/web/artistas}">Restablecer</a>
+</form>
+<p><a th:href="@{/web/artistas/nueva}">Crear nuevo artista</a></p>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Género</th>
+        <th>País</th>
+        <th>Año debut</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="artista : ${artistas}">
+        <td th:text="${artista.nombre}"></td>
+        <td th:text="${artista.genero}"></td>
+        <td th:text="${artista.pais}"></td>
+        <td th:text="${artista.añoDebut}"></td>
+        <td>
+            <a th:href="@{/web/artistas/editar/{id}(id=${artista.id})}">Editar</a>
+            <form th:action="@{/web/artistas/borrar/{id}(id=${artista.id})}" method="post" style="display:inline">
+                <button type="submit">Borrar</button>
+            </form>
+            <a th:href="@{/web/artistas/{id}(id=${artista.id})}">Ver detalle</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

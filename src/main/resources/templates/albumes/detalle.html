@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Detalle de Álbum</title>
+</head>
+<body>
+<h1>Detalle de álbum</h1>
+<div th:if="${album} != null">
+    <p><strong>Título:</strong> <span th:text="${album.titulo}"></span></p>
+    <p><strong>Año:</strong> <span th:text="${album.año}"></span></p>
+    <p><strong>Número de pistas:</strong> <span th:text="${album.numeroPistas}"></span></p>
+    <p><strong>Duración total:</strong> <span th:text="${album.duracionTotal}"></span></p>
+    <p><strong>Artista:</strong> <span th:text="${album.artista != null ? album.artista.nombre : 'Sin artista'}"></span></p>
+</div>
+<p><a th:href="@{/web/albumes}">Volver a la lista de álbumes</a></p>
+</body>
+</html>

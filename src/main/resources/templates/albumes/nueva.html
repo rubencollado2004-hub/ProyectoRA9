@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nuevo Álbum</title>
+</head>
+<body>
+<h1>Crear álbum</h1>
+<form th:action="@{/web/albumes/nueva}" th:object="${album}" method="post">
+    <div>
+        <label>Título: <input type="text" th:field="*{titulo}" required/></label>
+    </div>
+    <div>
+        <label>Año: <input type="number" th:field="*{año}" required/></label>
+    </div>
+    <div>
+        <label>Número de pistas: <input type="number" th:field="*{numeroPistas}" required/></label>
+    </div>
+    <div>
+        <label>Duración total: <input type="number" th:field="*{duracionTotal}" required/></label>
+    </div>
+    <div>
+        <label>Artista:
+            <select th:field="*{artista.id}" required>
+                <option value="" disabled selected>Selecciona un artista</option>
+                <option th:each="artista : ${artistas}" th:value="${artista.id}" th:text="${artista.nombre}"></option>
+            </select>
+        </label>
+    </div>
+    <div>
+        <button type="submit">Guardar</button>
+        <a th:href="@{/web/albumes}">Cancelar</a>
+    </div>
+</form>
+</body>
+</html>
